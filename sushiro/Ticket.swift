@@ -6,10 +6,8 @@ import Foundation
 import RealmSwift
 import CoreImage
 
-
 //グローバルにする必要ある
 var audioPlayerInstance : AVAudioPlayer! = nil
-
 
 class Ticket: UIViewController,UITextFieldDelegate,UITabBarDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -17,14 +15,13 @@ class Ticket: UIViewController,UITextFieldDelegate,UITabBarDelegate {
     var addTimer = Timer()
     var timerCount = 0
   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         //クラスをインスタンス化
-        let button = makeButton()//m:backgrand,e:picture,e:border
-        let label = makeLabel()//o:border,o1:backgrand,o2:0でalpha無効,ic:300でむテキスト無効
-
+        let button = MakeButton()
+        let label = MakeLabel()
+        
         //UIImageViewを作成する.
         myImageView = UIImageView(frame: CGRect(x: 0,y: 0,width: 1024,height: 768))
         myImageView.image = UIImage(ciImage: myInputImage!)
@@ -84,21 +81,22 @@ class Ticket: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         audioPlayerInstance.volume = appDelegate.touchVolume
         
         //共通ボタン作成
-        self.view.addSubview(label.make(xv:40,yv:55,wv:300,hv:80,f:35,o:0,o1:0,o2:0.0,ic:"只今の待ち時間"))
-        self.view.addSubview(label.make(xv:40,yv:160,wv:300,hv:150,f:90,o:0,o1:0,o2:0.0,ic:"約25分"))
-        self.view.addSubview(label.make(xv:340,yv:55,wv:300,hv:80,f:35,o:0,o1:0,o2:0.0,ic:"次のご案内予定"))
-        self.view.addSubview(label.make(xv:340,yv:160,wv:300,hv:150,f:90,o:0,o1:0,o2:0.0,ic:"218"))
-        self.view.addSubview(label.make(xv:640,yv:55,wv:300,hv:80,f:35,o:0,o1:0,o2:0.0,ic:"ご案内済みのお客様"))
-        self.view.addSubview(label.make(xv:640,yv:140,wv:300,hv:110,f:35,o:0,o1:0,o2:0.0,ic:"ご予約テーブル:1420"))
-        self.view.addSubview(label.make(xv:640,yv:250,wv:300,hv:110,f:35,o:0,o1:0,o2:0.0,ic:"テーブル:1237"))
-        self.view.addSubview(label.make(xv:640,yv:360,wv:300,hv:120,f:35,o:0,o1:0,o2:0.0,ic:"カウンター:237"))
-        self.view.addSubview(label.make(xv:40,yv:320,wv:640,hv:60,f:90,o:0,o1:0,o2:0.0,ic:"待ち時間は状況により前後する場合がございます"))
-        self.view.addSubview(label.make(xv:40,yv:490,wv:460,hv:270,f:50,o:0,o1:3,o2:0.0,ic:""))
-        self.view.addSubview(label.make(xv:55,yv:490,wv:470,hv:100,f:50,o:0,o1:0,o2:0.0,ic:"お店で受付の方"))
-        self.view.addSubview(button.make(xv:100,yv:590,wv:300,hv:150,f:50,b:"発券",c:1,d:1,e:0,m:1))
-        self.view.addSubview(label.make(xv:540,yv:490,wv:460,hv:270,f:50,o:0,o1:4,o2:0.0,ic:""))
-        self.view.addSubview(label.make(xv:555,yv:490,wv:470,hv:100,f:50,o:0,o1:0,o2:0.0,ic:"スマホで受付の方"))
-        self.view.addSubview(button.make(xv:625,yv:590,wv:300,hv:150,f:50,b:"チックイン",c:2,d:1,e:0,m:1))
+        self.view.addSubview(label.make(x:40,y:55,width:300,height:80,back:UIColor.clear,_text:"只今の待ち時間",_fontSize:35))
+        self.view.addSubview(label.make(x:40,y:160,width:300,height:150,back:UIColor.clear,_text:"約25分",_fontSize:90))
+        self.view.addSubview(label.make(x:340,y:55,width:300,height:80,back:UIColor.clear,_text:"次のご案内予定",_fontSize:35))
+        self.view.addSubview(label.make(x:340,y:160,width:300,height:150,back:UIColor.clear,_text:"218",_fontSize:90))
+        self.view.addSubview(label.make(x:640,y:55,width:300,height:80,back:UIColor.clear,_text:"ご案内済みのお客様",_fontSize:35))
+        self.view.addSubview(label.make(x:640,y:140,width:300,height:110,back:UIColor.clear,_text:"ご予約テーブル:1420",_fontSize:35))
+        self.view.addSubview(label.make(x:640,y:250,width:300,height:110,back:UIColor.clear,_text:"テーブル:1237",_fontSize:35))
+        self.view.addSubview(label.make(x:640,y:360,width:300,height:120,back:UIColor.clear,_text:"カウンター:237",_fontSize:35))
+        self.view.addSubview(label.make(x:40,y:320,width:640,height:60,back:UIColor.clear,_text:"待ち時間は状況により前後する場合がございます",_fontSize:90))
+        self.view.addSubview(label.make(x:40,y:490,width:460,height:270,back:UIColor.blue))
+        self.view.addSubview(label.make(x:55,y:490,width:470,height:100,back:UIColor.clear,_text:"お店で受付の方",_fontSize:50))
+        self.view.addSubview(label.make(x:540,y:490,width:460,height:270,back:UIColor.red,_fontSize:50))
+        self.view.addSubview(label.make(x:555,y:490,width:470,height:100,back:UIColor.clear,_text:"スマホで受付の方",_fontSize:50))
+        self.view.addSubview(button.make(x:100,y:590,width:300,height:150,back:UIColor.white,tag:0,_borderWidth:1.5,_cornerRadius:15,_text:"発券",_fontSize:50))
+        self.view.addSubview(button.make(x:625,y:590,width:300,height:150,back:UIColor.white,tag:1,_borderWidth:1.5,_cornerRadius:15,_text:"チェックイン",_fontSize:50))
+        
         func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
             // Dispose of any resources that can be recreated.
@@ -109,10 +107,10 @@ class Ticket: UIViewController,UITextFieldDelegate,UITabBarDelegate {
     @objc func selection(sender: UIButton){
         let view = viewSetting()
         switch sender.tag{
-        case 1:
+        case 0:
             self.present(view.viewSet(view: Accounting(), anime: .flipHorizontal), animated: false, completion: nil)
             audioPlayerInstance.play()
-        case 2:
+        case 1:
             self.present(view.viewSet(view: Camera(), anime: .flipHorizontal), animated: false, completion: nil)
             audioPlayerInstance.play()
         default:break

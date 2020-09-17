@@ -5,8 +5,6 @@ import Foundation
 import CoreImage
 import RealmSwift
 
-
-
 class Call: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     // 画像を設定する.
@@ -19,6 +17,8 @@ class Call: UIViewController {
         loadView()//videoplayerを破棄
         print("overfuncのloadviewはした")
         super.viewDidLoad()
+       
+        let button = MakeButton()
         myImageView = UIImageView(frame: self.view.frame)
         myImageView.image = UIImage(ciImage: myInputImage!)
         self.view.addSubview(myImageView)
@@ -30,27 +30,11 @@ class Call: UIViewController {
 //            self.view.addSubview(qrc.make(sum: appDelegate.qr_string))
         }
 
-        //ボタン作成メソッド
-        func makeButton(xv:Int,yv:Int,wv:Int,hv:Int,f:Int,b:String,c:Int){
-            let button: UIButton = UIButton(frame: CGRect(x:CGFloat(xv), y:CGFloat(yv), width: CGFloat(wv), height: CGFloat(hv)))
-            button.backgroundColor = UIColor.white
-            button.layer.borderColor = UIColor.brown.cgColor
-            button.layer.borderWidth = 1.5
-            button.setTitle("\(b)", for: .normal)
-            button.layer.cornerRadius = 3.0
-            button.setTitleColor(UIColor.red, for: .normal)
-            button.titleLabel?.numberOfLines = 2//0:無限改行,2:2行表示
-            button.titleLabel?.font =  UIFont.systemFont(ofSize: 50)
-            button.tag = c
-            button.addTarget(self, action: #selector(selection(sender:)), for: .touchUpInside)
-            // ボタンを追加する.
-            self.view.addSubview(button)
-        }
-        
         //ボタン作成
-        makeButton(xv:80,yv:500,wv:280,hv:180,f:20,b:"会計",c:0)
-        makeButton(xv:380,yv:500,wv:280,hv:180,f:20,b:"キャンセル",c:1)
-        makeButton(xv:680,yv:500,wv:280,hv:180,f:20,b:"戻る",c:2)
+        self.view.addSubview(button.make(x:80,y:500,width:280,height:180,back:UIColor.white,tag:0,_borderWidth:1.5, _cornerRadius:6,_text:"会計", _fontSize:50))
+        self.view.addSubview(button.make(x:380,y:500,width:280,height:180,back:UIColor.white,tag:1,_borderWidth:1.5, _cornerRadius:6,_text:"キャンセル", _fontSize:50))
+        self.view.addSubview(button.make(x:680,y:500,width:280,height:180,back:UIColor.white,tag:2,_borderWidth:1.5, _cornerRadius:6,_text:"戻る", _fontSize:50))
+
     }
     
 
@@ -142,4 +126,3 @@ class Call: UIViewController {
     
     
 }
-

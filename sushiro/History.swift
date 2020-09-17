@@ -18,19 +18,16 @@ class History: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         // 再生準備
         audioPlayerInstance.prepareToPlay()
-        
-        // let drawView = DrawView(frame: self.view.bounds)
-        //self.view.addSubview(drawView)
-        
+        //クラスをインスタンス化
+        let button = MakeButton()
+        let label = MakeLabel()
+
         // UIImageViewを作成する.
         myImageView = UIImageView(frame: CGRect(x: 0,y: 0,width: 1024,height: 768))
         myImageView.image = UIImage(ciImage: myInputImage!)
         self.view.addSubview(myImageView)
-        ////audioPlayerInstance.prepareToPlay()
-        // audioPlayerInstance.volume = appDelegate.volume
-        //クラスをインスタンス化
-        let button = makeButton()//m:backgrand,e:picture,e:border
-        let label = makeLabel()//o:border,o1:backgrand,o2:0でalpha無効,ic:300でむテキスト無効
+        
+        
         let scrollView = UIScrollView()
        
         //縦スクロールのみにする記述
@@ -53,24 +50,24 @@ class History: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         //scrollView.showsVerticalScrollIndicator = false
         self.view.addSubview(scrollView)
         
-        scrollView.addSubview(label.make(xv:40,yv:15,wv:300,hv:40,f:35,o:0,o1:0,o2:0.0,ic:"商品名"))
-        scrollView.addSubview(label.make(xv:420,yv:15,wv:80,hv:40,f:35,o:0,o1:0,o2:0.0,ic:"数量"))
+        scrollView.addSubview(label.make(x:40,y:15,width:300,height:40,back:UIColor.clear,_text:"商品名",_fontSize:35))
+        scrollView.addSubview(label.make(x:420,y:15,width:80,height:40,back:UIColor.clear,_text:"数量",_fontSize:35))
         
         if appDelegate.history.count != 0 {
             for i in 0...appDelegate.history.count-1 {
                 // UIScrollViewに追加
-                scrollView.addSubview(label.make(xv:40,yv:55+(i*50),wv:300,hv:40,f:35,o:0,o1:0,o2:0.0,ic:appDelegate.history[i].name,al:"l"))
-                scrollView.addSubview(label.make(xv:420,yv:55+(i*50),wv:80,hv:40,f:35,o:0,o1:0,o2:0.0,ic:"\(appDelegate.history[i].num)"))
+                scrollView.addSubview(label.make(x:40,y:CGFloat(55+(i*50)),width:300,height:40,back:UIColor.clear,_text:appDelegate.history[i].name,_fontSize:35,_alignment:NSTextAlignment.left))
+                scrollView.addSubview(label.make(x:420,y:CGFloat(55+(i*50)),width:80,height:40,back:UIColor.clear,_text:"\(appDelegate.history[i].num)",_fontSize:35))
             }
         }
-        scrollView.addSubview(label.make(xv:40,yv:Int(scrollView.contentSize.height)-150,wv:80,hv:40,f:35,o:0,o1:0,o2:0.0,ic:"小計",al:"l"))
-        scrollView.addSubview(label.make(xv:40,yv:Int(scrollView.contentSize.height)-100,wv:80,hv:40,f:35,o:0,o1:0,o2:0.0,ic:"消費税",al:"l"))
-        scrollView.addSubview(label.make(xv:40,yv:Int(scrollView.contentSize.height)-50,wv:80,hv:40,f:35,o:0,o1:0,o2:0.0,ic:"合計",al:"l"))
-        
+        scrollView.addSubview(label.make(x:40,y:CGFloat(Int(scrollView.contentSize.height)-150),width:80,height:40,back:UIColor.clear,_text:"小計",_fontSize:35,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:40,y:CGFloat(Int(scrollView.contentSize.height)-100),width:80,height:40,back:UIColor.clear,_text:"消費税",_fontSize:35,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:40,y:CGFloat(Int(scrollView.contentSize.height)-50),width:80,height:40,back:UIColor.clear,_text:"合計",_fontSize:35,_alignment:NSTextAlignment.left))
+       
         //ボタン作成
-        self.view.addSubview(button.make(xv:750,yv:600,wv:100,hv:50,f:50,b:"戻る",c:0,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:700,yv:250,wv:200,hv:50,f:50,b:"スタッフ呼出",c:1,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:700,yv:500,wv:200,hv:50,f:50,b:"会計に進む",c:2,d:1,e:0,m:1))
+        self.view.addSubview(button.make(x:750,y:600,width:100,height:50,back:UIColor.white,tag:0, _borderWidth:1.5,_cornerRadius:6,_text:"戻る",_adjustsFontSizeToFitWidth:true))
+         self.view.addSubview(button.make(x:700,y:250,width:200,height:50,back:UIColor.white,tag:1, _borderWidth:1.5,_cornerRadius:6,_text:"スタッフ呼出",_adjustsFontSizeToFitWidth:true))
+         self.view.addSubview(button.make(x:700,y:500,width:200,height:50,back:UIColor.white,tag:2, _borderWidth:1.5,_cornerRadius:6,_text:"会計に進む",_adjustsFontSizeToFitWidth:true))
         
         func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()

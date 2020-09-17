@@ -1,9 +1,4 @@
-
-
-import Foundation
 import UIKit
-import AVFoundation//オーディオがらみ
-import AVKit
 
 class Test: UISplitViewController, UISplitViewControllerDelegate {
     

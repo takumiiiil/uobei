@@ -19,12 +19,10 @@ class ViewController: UIViewController ,selection{
         super.viewDidLoad()
         
         //クラスをインスタンス化
-        let button = makeButton()//m:backgrand,e:picture,e:border
-        let launchViewController: UIViewController = Test()
+        let button = MakeButton()
+        
         audioPlayerInstance.prepareToPlay()
         
-        self.addChild(launchViewController)  // 子ViewのViewControllerを指定
-        launchViewController.didMove(toParent: self)  // 子Viewの所有権を譲渡
         addTimer =  Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(play), userInfo: nil, repeats: false)
         myImageView = UIImageView(frame: UIScreen.main.bounds)
         myImageView.image = UIImage(ciImage: myInputImage!)
@@ -33,9 +31,9 @@ class ViewController: UIViewController ,selection{
         for i in 0...3{
             for j in 0...2{
                 if i == 3{
-                    self.view.addSubview(button.make(xv:80 + j * 300,yv:620,wv:280,hv:130,f:20,b:menuArray[i][j],c:i * 3 + j,t:1))
+                    self.view.addSubview(button.make(x:CGFloat(80+j*300),y:645,width:280,height:110,back:UIColor.white,tag:i*3+j,_borderWidth:1.5,_cornerRadius:10,_text:menuArray[i][j],_fontSize:35))
                 }else{
-                    self.view.addSubview(button.make(xv:80 + j * 300,yv:170 + i * 140,wv:280,hv:180,f:20,b:menuArray[i][j],c:i * 3 + j,t:0))
+                   self.view.addSubview(button.make(x:CGFloat(80+j*300),y:CGFloat(160+i*140),width:280,height:180,back:UIColor.clear,tag:i*3+j,_pic:menuArray[i][j]))
                 }
             }
         }
@@ -97,7 +95,7 @@ class ViewController: UIViewController ,selection{
                 print("NSError")
             }
         }
-
+        
         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         //サイズを決める
         playerLayer.frame = CGRect(x:0, y:0, width:1024, height:768)
@@ -110,44 +108,13 @@ class ViewController: UIViewController ,selection{
         button.addTarget(self, action: #selector(selection(sender:)), for: .touchUpInside)
         self.view.addSubview(button)
         videoPlayer.play()
-
-        // 出力先判定
-        func IsHeadSetConnected() -> Bool{
-            let route  = AVAudioSession.sharedInstance().currentRoute;
-            for desc   in route.outputs{
-                let portType = desc.portType;
-                if (portType == AVAudioSession.Port.headphones){
-                    return true;
-                }
-            }
-            return false;
-        }
         
-        // イヤホンが刺された、出された時に呼ばれる
-        func setAudioNotification(){
-            //NotificationCenter.default.addObserver(self,
-            // selector: #selector(self.didChangeAudioSessionRoute(notification:)),
-            //name: NSNotification.Name.AVAudioSessionRouteChange,
-            //object: nil)
-        }
-
-        /*  func didChangeAudioSessionRoute(notification:Notification){
-            for desc in AVAudioSession.sharedInstance().currentRoute.outputs{
-            if desc.portType == AVAudioSession.Port.headphones{
-            // イヤホン刺さった
-            }else{
-                // イヤホン抜けた
-                if !self.isSetSpeeker{
-                    self.setupSpeeker()
-                }
-            }
-        }*/
     }
     
     @objc func playerDidFinishPlaying(notification: NSNotification) {
         play()
     }
-
+    
     @objc func selection(sender: UIButton){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let view = viewSetting()
@@ -155,31 +122,31 @@ class ViewController: UIViewController ,selection{
             k = sender.tag
         }
         switch sender.tag{
-            case 9:
-                addTimer.invalidate()
-                appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-                appDelegate.window?.rootViewController = Test()
-                appDelegate.window?.makeKeyAndVisible()
-                audioPlayerInstance.play()
-            case 10:
-                addTimer.invalidate()
-                self.present(view.viewSet(view: History(), anime: .flipHorizontal), animated: false, completion: nil)
-                audioPlayerInstance.play()
-            case 11:
-                addTimer.invalidate()
-                self.present(view.viewSet(view: Call(), anime: .flipHorizontal), animated: false, completion: nil)
-                audioPlayerInstance.play()
-            case 20://動画再生中のタップ
-                addTimer.invalidate()
-                loadView()//videoplayerを破棄 画面遷移なしで
-                viewDidLoad()
-                audioPlayerInstance.play()
-            case k://メニュー
-                appDelegate.choise = k
-                addTimer.invalidate()
-                self.present(view.viewSet(view: Menu(), anime: .flipHorizontal), animated: false, completion: nil)
-                audioPlayerInstance.play()
-            default:break
+        case 9:
+            addTimer.invalidate()
+            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
+            appDelegate.window?.rootViewController = Test()
+            appDelegate.window?.makeKeyAndVisible()
+            audioPlayerInstance.play()
+        case 10:
+            addTimer.invalidate()
+            self.present(view.viewSet(view: History(), anime: .flipHorizontal), animated: false, completion: nil)
+            audioPlayerInstance.play()
+        case 11:
+            addTimer.invalidate()
+            self.present(view.viewSet(view: Call(), anime: .flipHorizontal), animated: false, completion: nil)
+            audioPlayerInstance.play()
+        case 20://動画再生中のタップ
+            addTimer.invalidate()
+            loadView()//videoplayerを破棄 画面遷移なしで
+            viewDidLoad()
+            audioPlayerInstance.play()
+        case k://メニュー
+            appDelegate.choise = k
+            addTimer.invalidate()
+            self.present(view.viewSet(view: Menu(), anime: .flipHorizontal), animated: false, completion: nil)
+            audioPlayerInstance.play()
+        default:break
         }
     }
     

@@ -24,44 +24,38 @@ class Accounting: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         self.view.addSubview(myImageView)
         
         //クラスをインスタンス化
-        let button = makeButton()//m:backgrand,e:picture,e:border
-        let label = makeLabel()//o:border,o1:backgrand,o2:0でalpha無効,ic:300でむテキスト無効
-        
+        let button = MakeButton()
+        let label = MakeLabel()
         //共通ボタン作成
-        self.view.addSubview(label.make(xv:40,yv:180,wv:160,hv:70,f:50,o:0,o1:0,o2:0.0,ic:"大人・子供\n(7歳〜)"))
-        self.view.addSubview(label.make(xv:40,yv:310,wv:160,hv:70,f:50,o:0,o1:0,o2:0.0,ic:"未就学児\n(〜6歳)"))
+        self.view.addSubview(label.make(x:40,y:180,width:160,height:70,back:UIColor.clear,_text:"大人・子供\n(7歳〜)", _fontSize:50))
+        self.view.addSubview(label.make(x:40,y:310,width:160,height:70,back:UIColor.clear,_text:"未就学児\n(〜6歳)", _fontSize:50))
+       
         for i in 0...7{
             if i == 7 {
-                self.view.addSubview(button.make(xv:215 + (i*95),yv:180,wv:80,hv:80,f:50,b:"7+",c:i,d:1,e:0,m:1))
+                self.view.addSubview(button.make(x:CGFloat(215+(i*95)),y:180,width:80,height:80,back:UIColor.white,tag:i,_borderWidth:1.5,_cornerRadius:6,_text:"7+", _fontSize:50))
             }else{
-                self.view.addSubview(button.make(xv:215 + (i*95),yv:180,wv:80,hv:80,f:50,b:"\(i)",c:i,d:1,e:0,m:1))
+                self.view.addSubview(button.make(x:CGFloat(215+(i*95)),y:180,width:80,height:80,back:UIColor.white,tag:i,_borderWidth:1.5,_cornerRadius:6,_text:"\(i)", _fontSize:50))
             }
         }
         for i in 8...15{
               if i == 15 {
-              self.view.addSubview(button.make(xv:215 + ((i-8)*95),yv:310,wv:80,hv:80,f:50,b:"7+",c:i,d:1,e:0,m:1))
+              self.view.addSubview(button.make(x:CGFloat(215+((i-8)*95)),y:310,width:80,height:80,back:UIColor.white,tag:i,_borderWidth:1.5,_cornerRadius:6,_text:"7+", _fontSize:50))
               }else{
-                  self.view.addSubview(button.make(xv:215 + ((i-8)*95),yv:310,wv:80,hv:80,f:50,b:"\(i-8)",c:i,d:1,e:0,m:1))
+              self.view.addSubview(button.make(x:CGFloat(215+((i-8)*95)),y:310,width:80,height:80,back:UIColor.white,tag:i,_borderWidth:1.5,_cornerRadius:6,_text:"\(i-8)", _fontSize:50))
                   }
               }
         
-        self.view.addSubview(button.make(xv:215,yv:440,wv:365,hv:100,f:50,b:"カウンター",c:16,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:595,yv:440,wv:365,hv:100,f:50,b:"テーブル",c:17,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:215,yv:570,wv:745,hv:100,f:50,b:"発券",c:18,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:40,yv:710,wv:100,hv:50,f:50,b:"戻る",c:19,d:1,e:0,m:1))
-        
+        self.view.addSubview(button.make(x:215,y:440,width:365,height:100,back:UIColor.white,tag:16,_borderWidth:1.5,_cornerRadius:6,_text:"カウンター", _fontSize:50))
+        self.view.addSubview(button.make(x:595,y:440,width:365,height:100,back:UIColor.white,tag:17,_borderWidth:1.5,_cornerRadius:6,_text:"テーブル", _fontSize:50))
+        self.view.addSubview(button.make(x:215,y:570,width:745,height:100,back:UIColor.white,tag:18,_borderWidth:1.5,_cornerRadius:6,_text:"発券", _fontSize:50))
+        self.view.addSubview(button.make(x:40,y:710,width:100,height:50,back:UIColor.white,tag:19,_borderWidth:1.5,_cornerRadius:6,_text:"戻る", _fontSize:50))
+    
         //マスク用label上段
-        if appDelegate.maskFlag != 100 {
-            self.view.addSubview(label.make(xv:215 + (appDelegate.maskFlag*95),yv:180,wv:80,hv:80,f:50,o:0,o1:2,o2:0.3, ic: ""))
-        }
+        if appDelegate.maskFlag != 100 {self.view.addSubview(label.make(x:CGFloat(215+(appDelegate.maskFlag*95)),y:180,width:80,height:80,back:UIColor.black,_alpha:0.3))}
         //マスク用label中段
-        if appDelegate.maskFlag2 != 100 {
-            self.view.addSubview(label.make(xv:215 + (appDelegate.maskFlag2*95),yv:310,wv:80,hv:80,f:50,o:0,o1:2,o2:0.3, ic: ""))
-        }
+        if appDelegate.maskFlag2 != 100 {self.view.addSubview(label.make(x:CGFloat(215+(appDelegate.maskFlag2*95)),y:310,width:80,height:80,back:UIColor.black,_alpha:0.3))}
         //マスク用label下段
-        if appDelegate.maskFlag3 != 100 {
-            self.view.addSubview(label.make(xv:215 + (appDelegate.maskFlag3*380),yv:440,wv:365,hv:100,f:50,o:0,o1:2,o2:0.3, ic: ""))
-        }
+        if appDelegate.maskFlag3 != 100 {self.view.addSubview(label.make(x:CGFloat(215+(appDelegate.maskFlag3*380)),y:440,width:365,height:100,back:UIColor.black,_alpha:0.3))}
         
         func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()

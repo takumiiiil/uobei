@@ -31,11 +31,10 @@ class Reception: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         myImageView = UIImageView(frame: CGRect(x: 0,y: 0,width: 1024,height: 768))
         myImageView.image = UIImage(ciImage: myInputImage!)
         self.view.addSubview(myImageView)
-        ////audioPlayerInstance.prepareToPlay()
-        // audioPlayerInstance.volume = appDelegate.volume
+
         //クラスをインスタンス化
-        let button = makeButton()//m:backgrand,e:picture,e:border
-        let label = makeLabel()//o:border,o1:backgrand,o2:0でalpha無効,ic:300でむテキスト無効
+        let button = MakeButton()
+        let label = MakeLabel()
         //集計操作
         let realm = try! Realm()
         let obj = realm.objects(guestData.self).last
@@ -48,7 +47,6 @@ class Reception: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         scrollView.frame = scrollFrame
         //ここのhightはスクロール出来る上限
         //scrollView.contentSizeのheightはscrollFrameのheightより大きい必要がある。
-       
         scrollView.contentSize = CGSize(width:self.view.frame.width/3, height: 770)
   
         scrollView.layer.borderWidth = 1.5
@@ -61,100 +59,94 @@ class Reception: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         //scrollView.showsVerticalScrollIndicator = false
         self.view.addSubview(scrollView)
 
-        scrollView.addSubview(label.make(xv:20,yv:15,wv:300,hv:20,f:25,o:0,o1:0,o2:0.0,ic:"うまいすしを、精一杯。"))
-        scrollView.addSubview(label.make(xv:20,yv:35,wv:300,hv:50,f:45,o:0,o1:0,o2:0.0,ic:"スシロー"))
-        scrollView.addSubview(label.make(xv:20,yv:95,wv:300,hv:25,f:35,o:0,o1:0,o2:0.0,ic:"ホール・キッチンスタッフ募集中!!"))
-        scrollView.addSubview(label.make(xv:20,yv:130,wv:300,hv:25,f:35,o:0,o1:0,o2:0.0,ic:"詳しくはURLから"))
-        scrollView.addSubview(label.make(xv:20,yv:165,wv:300,hv:25,f:35,o:0,o1:0,o2:0.0,ic:"www.akindo-sushiro.co.jp/m"))
-        
-     
-        scrollView.addSubview(label.make(xv:20,yv:195,wv:300,hv:175,f:35,o:2,o1:0,o2:0.0,ic:""))
-        scrollView.addSubview(label.make(xv:70,yv:210,wv:200,hv:40,f:35,o:2,o1:0,o2:0.0,ic:"アンケートに答えて\nお得なクーポンをゲット!"))
+        scrollView.addSubview(label.make(x:20,y:15,width:300,height:20,back:UIColor.clear,_text:"うまいすしを、精一杯。", _fontSize:25))
+        scrollView.addSubview(label.make(x:20,y:35,width:300,height:50,back:UIColor.clear,_text:"スシロー",_fontSize:45))
+        scrollView.addSubview(label.make(x:20,y:95,width:300,height:25,back:UIColor.clear,_text:"ホール・キッチンスタッフ募集中!!",_fontSize:35))
+        scrollView.addSubview(label.make(x:20,y:130,width:300,height:25,back:UIColor.clear,_text:"詳しくはURLから",_fontSize:35))
+        scrollView.addSubview(label.make(x:20,y:165,width:300,height:25,back:UIColor.clear,_text:"www.akindo-sushiro.co.jp/m",_fontSize:35))
+        scrollView.addSubview(label.make(x:20,y:195,width:300,height:175,back:UIColor.clear,_borderWidth:1.5,_fontSize:35))
+        scrollView.addSubview(label.make(x:70,y:210,width:200,height:40,back:UIColor.clear,_text:"アンケートに答えて\nお得なクーポンをゲット!",_fontSize:35))
+       
         let qrc = makeQrcode()
         scrollView.addSubview(qrc.make(xv:30,yv:260,wv:100,hv:100,sum:"https://www.akindo-sushiro.co.jp"))
-        scrollView.addSubview(label.make(xv:130,yv:260,wv:185,hv:35,f:10,o:0,o1:0,o2:0.0,ic:"QRからアンケートサイトにアクセス\n本レシートの招待番号を入力して下さい"))
+        scrollView.addSubview(label.make(x:130,y:260,width:185,height:35,back:UIColor.clear,_text:"QRからアンケートサイトにアクセス\n本レシートの招待番号を入力して下さい",_fontSize:10))
         
         let text = "www.mysushiro.jp"
-        
 //        // attributedTextを作成する.
 //        let attributedText = NSMutableAttributedString(string: text)
 //        let range = NSMakeRange(0, text.characters.count)
-//
 //        // 下線を引くようの設定をする.
 //        attributedText.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
-//
+
 //        // 対象のラベルを作成して、attributedTextを設定する.
 //       let label2 = UILabel(frame: CGRect(x:CGFloat(145), y: CGFloat(290), width: CGFloat(185), height: CGFloat(45)))
 //        label2.attributedText = attributedText
 //        scrollView.addSubview(label2)
         
-        scrollView.addSubview(label.make(xv:110,yv:330,wv:185,hv:35,f:10,o:0,o1:0,o2:0.0,ic:"回答期限:本日より7日以内"))
-        
+        scrollView.addSubview(label.make(x:110,y:330,width:185,height:35,back:UIColor.clear,_text:"回答期限:本日より7日以内",_fontSize:10))
          let obj2 = realm.objects(allData.self)
-        scrollView.addSubview(label.make(xv:20,yv:380,wv:185,hv:35,f:15,o:0,o1:0,o2:0.0,ic:"レシート#   \(obj2.count)",al:"l"))
+        scrollView.addSubview(label.make(x:20,y:380,width:185,height:35,back:UIColor.clear,_text:"レシート#   \(obj2.count)",_fontSize:15,_alignment:NSTextAlignment.left))
         
        //覚える
         let num = (Int(obj!.adultCount)!) + (Int(obj!.childCount)!)
         
         //オプショナル型→!でキャスト
-        scrollView.addSubview(label.make(xv:20,yv:410,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"席:\(obj!.seatType)"+"        \(num)名",al:"l"))
+        scrollView.addSubview(label.make(x:20,y:410,width:300,height:35,back:UIColor.clear,_text:"席:\(obj!.seatType)"+"        \(num)名",_fontSize:25,_alignment:NSTextAlignment.left))
         
         let date = Date()
         let dateAndTime = date.formattedDateWith(style: .longDateAndTime)
-        scrollView.addSubview(label.make(xv:20,yv:440,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"\(dateAndTime)",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:470,wv:300,hv:35,f:15,o:0,o1:0,o2:0.0,ic:"扱者:佐藤と東",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:500,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"100円皿 (\(obj!.dish)点 × @¥100) ¥\(obj!.dish*100)",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:530,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"----------------------------------------------",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:560,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"小計　　　   　　¥\(obj!.dish*100)",al:"l"))
+         scrollView.addSubview(label.make(x:20,y:440,width:300,height:35,back:UIColor.clear,_text:"\(dateAndTime)",_fontSize:25,_alignment:NSTextAlignment.left))
+         scrollView.addSubview(label.make(x:20,y:470,width:300,height:35,back:UIColor.clear,_text:"扱者:佐藤と東",_fontSize:15,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:20,y:500,width:300,height:35,back:UIColor.clear,_text:"100円皿 (\(obj!.dish)点 × @¥100) ¥\(obj!.dish*100)",_fontSize:25,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:20,y:530,width:300,height:35,back:UIColor.clear,_text:"----------------------------------------------",_fontSize:25,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:20,y:560,width:300,height:35,back:UIColor.clear,_text:"小計　　　   　　¥\(obj!.dish*100)",_fontSize:25,_alignment:NSTextAlignment.left))
         
         let num2 = Int(Double(obj!.dish*100)*0.1)
-        scrollView.addSubview(label.make(xv:20,yv:590,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"外税(10%)　　　　¥\(num2)",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:630,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"==================================",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:670,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"合計(\(obj!.dish))点　　　　¥\(obj!.dish*110)",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:700,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"お預り　　　　　　　　　　　　¥\(inputNum)",al:"l"))
-        scrollView.addSubview(label.make(xv:20,yv:730,wv:300,hv:35,f:25,o:0,o1:0,o2:0.0,ic:"お釣　　　　　　　　　　　　　¥\(change)",al:"l"))
-        
-        
-
+        scrollView.addSubview(label.make(x:20,y:590,width:300,height:35,back:UIColor.clear,_text:"外税(10%)　　　　¥\(num2)",_fontSize:25,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:20,y:630,width:300,height:35,back:UIColor.clear,_text:"==================================",_fontSize:25,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:20,y:670,width:300,height:35,back:UIColor.clear,_text:"合計(\(obj!.dish))点　　　　¥\(obj!.dish*110)",_fontSize:25,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:20,y:700,width:300,height:35,back:UIColor.clear,_text:"お預り　　　　　　　　　　　　¥\(inputNum)",_fontSize:25,_alignment:NSTextAlignment.left))
+        scrollView.addSubview(label.make(x:20,y:730,width:300,height:35,back:UIColor.clear,_text:"お釣　　　　　　　　　　　　　¥\(change)",_fontSize:25,_alignment:NSTextAlignment.left))
 
         //ラベル作成 //計算
-        self.view.addSubview(label.make(xv: 400, yv: 29, wv: 50, hv: 20, f: 10, o: 0, o1: 0, o2: 0, ic: "預かり"))
-        self.view.addSubview(label.make(xv: 400, yv: 129, wv: 50, hv: 20, f: 10, o: 0, o1: 0, o2: 0, ic: "会計"))
-        self.view.addSubview(label.make(xv: 400, yv: 229, wv: 50, hv: 20, f: 10, o: 0, o1: 0, o2: 0, ic: "お釣り"))
-        self.view.addSubview(label.make(xv: 400, yv: 50, wv: 270, hv: 60, f: 50, o: 2, o1: 0, o2: 0, ic: "¥\(inputNum)"))
-        self.view.addSubview(label.make(xv: 400, yv: 150, wv: 270, hv: 60, f: 50, o: 2, o1: 0, o2: 0, ic: "¥\(dishFee)"))
-        self.view.addSubview(label.make(xv: 400, yv: 250, wv: 270, hv: 60, f: 50, o: 2, o1: 0, o2: 0, ic: "¥\(change)"))
-        self.view.addSubview(label.make(xv: 600, yv: 29, wv: 50, hv: 20, f: 10, o: 0, o1: 0, o2: 0, ic: "\(warning)"))
+        self.view.addSubview(label.make(x: 400, y: 29, width:50, height:20,back:UIColor.clear,_text:"預かり", _fontSize:10))
+        self.view.addSubview(label.make(x: 400, y: 129, width:50, height:20,back:UIColor.clear,_text:"会計", _fontSize:10))
+        self.view.addSubview(label.make(x: 400, y: 229, width:50, height:20,back:UIColor.clear,_text:"お釣り", _fontSize:10))
+        self.view.addSubview(label.make(x: 400, y: 50, width:270, height:60,back:UIColor.clear,_borderWidth:1.5,_cornerRadius:6,_text:"¥\(inputNum)", _fontSize:50))
+        self.view.addSubview(label.make(x: 400, y: 150, width:270, height:60,back:UIColor.clear,_borderWidth:1.5,_cornerRadius:6,_text:"¥\(dishFee)", _fontSize:50))
+        self.view.addSubview(label.make(x: 400, y: 250, width:270, height:60,back:UIColor.clear,_borderWidth:1.5,_cornerRadius:6,_text:"¥\(change)", _fontSize:50))
+        self.view.addSubview(label.make(x: 600, y: 29, width:50, height:20,back:UIColor.clear,_text:"\(warning)", _fontSize:10))
         //ボタン作成
-        self.view.addSubview(button.make(xv:30,yv:700,wv:100,hv:50,f:50,b:"戻る",c:20,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:750,yv:650,wv:200,hv:80,f:50,b:"ENTER",c:21,d:1,e:0,m:1))
+        self.view.addSubview(button.make(x:30,y:700,width:100,height:50,back:UIColor.white,tag:20, _borderWidth:1.5,_cornerRadius:6,_text:"戻る", _fontSize:50))
+        self.view.addSubview(button.make(x:750,y:650,width:200,height:80,back:UIColor.white,tag:21, _borderWidth:1.5,_cornerRadius:6,_text:"ENTER", _fontSize:50))
+        
         //テンキー作成
         for i in 1...3{
             for j in 1...3{
-                self.view.addSubview(button.make(xv:(300 + j * 100) ,yv:250 + i * 100,wv:70,hv:70,f:50,b:tenkey[i-1][j-1],c:Int(tenkey[i-1][j-1])!,d:1,e:0,m:1))
+                self.view.addSubview(button.make(x:CGFloat(300+j*100) ,y:CGFloat(250+i*100),width:70,height:70,back:UIColor.white,tag:Int(tenkey[i-1][j-1])!,_borderWidth:1.5,_cornerRadius:6, _text:tenkey[i-1][j-1], _fontSize:50))
             }
         }
-        self.view.addSubview(button.make(xv:400,yv:650,wv:180,hv:70,f:50,b:"0",c:10,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:600,yv:650,wv:70,hv:70,f:50,b:"✗",c:22,d:1,e:0,m:1))
+        self.view.addSubview(button.make(x:400,y:650,width:180,height:70,back:UIColor.white,tag:10, _borderWidth:1.5,_cornerRadius:6, _text:"0", _fontSize:50))
+        self.view.addSubview(button.make(x:600,y:650,width:70,height:70,back:UIColor.white,tag:22, _borderWidth:1.5,_cornerRadius:6, _text:"〆", _fontSize:50))
         //終わり
         //年齢層
-        let gene:[UIButton] = [button.make(xv:750,yv:50,wv:100,hv:100,f:50,b:"12",c:30,d:1,e:0,m:1),
-                               button.make(xv:850,yv:50,wv:100,hv:100,f:50,b:"12",c:31,d:1,e:0,m:1),
-                               button.make(xv:750,yv:150,wv:100,hv:100,f:50,b:"19",c:32,d:1,e:0,m:1),
-                               button.make(xv:850,yv:150,wv:100,hv:100,f:50,b:"19",c:33,d:1,e:0,m:1),
-                               button.make(xv:750,yv:250,wv:100,hv:100,f:50,b:"29",c:34,d:1,e:0,m:1),
-                               button.make(xv:850,yv:250,wv:100,hv:100,f:50,b:"29",c:35,d:1,e:0,m:1),
-                               button.make(xv:750,yv:350,wv:100,hv:100,f:50,b:"49",c:36,d:1,e:0,m:1),
-                               button.make(xv:850,yv:350,wv:100,hv:100,f:50,b:"49",c:37,d:1,e:0,m:1),
-                               button.make(xv:750,yv:450,wv:100,hv:100,f:50,b:"50",c:38,d:1,e:0,m:1),
-                               button.make(xv:850,yv:450,wv:100,hv:100,f:50,b:"50",c:39,d:1,e:0,m:1)]
+        let gene:[UIButton] = [button.make(x:750,y:50,width:100,height:100,back:UIColor.white,tag:30, _borderWidth:1.5,_cornerRadius:6,_text:"12", _fontSize:50),
+                               button.make(x:850,y:50,width:100,height:100,back:UIColor.white,tag:31, _borderWidth:1.5,_cornerRadius:6,_text:"12", _fontSize:50),
+                               button.make(x:750,y:150,width:100,height:100,back:UIColor.white,tag:32, _borderWidth:1.5,_cornerRadius:6,_text:"19", _fontSize:50),
+                               button.make(x:850,y:150,width:100,height:100,back:UIColor.white,tag:33, _borderWidth:1.5,_cornerRadius:6,_text:"19", _fontSize:50),
+                               button.make(x:750,y:250,width:100,height:100,back:UIColor.white,tag:34, _borderWidth:1.5,_cornerRadius:6,_text:"29", _fontSize:50),
+                               button.make(x:850,y:250,width:100,height:100,back:UIColor.white,tag:35, _borderWidth:1.5,_cornerRadius:6,_text:"29", _fontSize:50),
+                               button.make(x:750,y:350,width:100,height:100,back:UIColor.white,tag:36, _borderWidth:1.5,_cornerRadius:6,_text:"49", _fontSize:50),
+                               button.make(x:850,y:350,width:100,height:100,back:UIColor.white,tag:37, _borderWidth:1.5,_cornerRadius:6,_text:"49", _fontSize:50),
+                               button.make(x:750,y:450,width:100,height:100,back:UIColor.white,tag:38, _borderWidth:1.5,_cornerRadius:6,_text:"50", _fontSize:50),
+                               button.make(x:850,y:450,width:100,height:100,back:UIColor.white,tag:39, _borderWidth:1.5,_cornerRadius:6,_text:"50", _fontSize:50)]
         
         //年齢層年齢層マスク
         if appDelegate.geneMaskFlag != 100 {
             if appDelegate.geneMaskFlag % 2 == 0{
-                self.view.addSubview(label.make(xv:750 ,yv:50 + ((appDelegate.geneMaskFlag - 30) * 50),wv:100,hv:100,f:50,o:0,o1:2,o2:0.3, ic: ""))
+                self.view.addSubview(label.make(x:750 ,y:CGFloat(50 + ((appDelegate.geneMaskFlag - 30) * 50)),width:100,height:100,back:UIColor.black,_cornerRadius:6,_alpha:0.3,_fontSize:50))
             }else{
-                self.view.addSubview(label.make(xv:850 ,yv:50 + ((appDelegate.geneMaskFlag - 31) * 50),wv:100,hv:100,f:50,o:0,o1:2,o2:0.3, ic: ""))
+                self.view.addSubview(label.make(x:850 ,y:CGFloat(50 + ((appDelegate.geneMaskFlag - 31) * 50)),width:100,height:100,back:UIColor.black,_cornerRadius:6,_alpha:0.3,_fontSize:50))
             }
         }
         for i in 0...9{
@@ -174,7 +166,7 @@ class Reception: UIViewController,UITextFieldDelegate,UITabBarDelegate {
             }
             self.view.addSubview(gene[i])
         }
-        let geneAns = button.make(xv:750,yv:570,wv:200,hv:60,f:50,b:"\(generation)",c:22,d:1,e:0,m:1)
+        let geneAns = button.make(x:750,y:570,width:200,height:60,back:UIColor.white,tag:22,_borderWidth:1.5,_cornerRadius:6, _text:"\(generation)", _fontSize:50)
         geneAns.titleLabel?.font = UIFont(name: "Bold",size: CGFloat(25))
         self.view.addSubview(geneAns)
         //年齢層終わり

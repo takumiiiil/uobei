@@ -1,4 +1,3 @@
-
 import UIKit
 import AVFoundation//オーディオがらみ
 import AVKit
@@ -6,10 +5,7 @@ import Foundation
 import RealmSwift
 import CoreImage
 
-
-
 var myImageView: UIImageView!
-
 
 class Menu: UIViewController,UITextFieldDelegate,UITabBarDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -53,9 +49,9 @@ class Menu: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         
         let tag_flag1 = appDelegate.choise
         //クラスをインスタンス化
-        let button = makeButton()//m:backgrand,e:picture,e:border
-        let label = makeLabel()//o:border,o1:backgrand,o2:0でalpha無効,ic:300でむテキスト無効
-        //        let qrc = makeQrc()
+        let button = MakeButton()
+        let label = MakeLabel()
+        
         
         // UIImageViewを作成する.
         myImageView = UIImageView(frame: CGRect(x: 0,y: 0,width: 1024,height: 768))
@@ -66,63 +62,50 @@ class Menu: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         for d in 0..<appDelegate.data[tag_flag1][appDelegate.tagFlag2].count{
             var e = 0
             if d <= 2{e=0}else{e=1}
-            self.view.addSubview(button.make(xv:30+(220*d)-(660*e),yv:225+(220*e),wv:200,hv:200,f:20,b:appDelegate.data[tag_flag1][appDelegate.tagFlag2][d].pic,c:0+d,d:0,e:1,m:0))
+            self.view.addSubview(button.make(x:CGFloat(30+(220*d)-(660*e)),y:CGFloat(225+(220*e)),width:200,height:200,back:UIColor.clear,tag:0+d,_pic:appDelegate.data[tag_flag1][appDelegate.tagFlag2][d].pic, _fontSize:20))
         }
         //共通ボタン作成
-        self.view.addSubview(button.make(xv:30,yv:700,wv:100,hv:50,f:50,b:"戻る",c:50,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:950,yv:290,wv:60,hv:60,f:50,b:"➕",c:51,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:790,yv:290,wv:60,hv:60,f:50,b:"➖",c:52,d:1,e:0,m:1))
-        self.view.addSubview(button.make(xv:650,yv:700,wv:100,hv:50,f:50,b:"注文",c:53,d:1,e:0,m:1))
+        self.view.addSubview(button.make(x:30,y:700,width:100,height:50,back:UIColor.white,tag:50, _borderWidth:1.5,_cornerRadius:6,_text:"戻る", _fontSize:50))
+        self.view.addSubview(button.make(x:650,y:700,width:100,height:50,back:UIColor.white,tag:53, _borderWidth:1.5,_cornerRadius:6,_text:"注文", _fontSize:50))
+        self.view.addSubview(button.make(x:950,y:290,width:60,height:60,back:UIColor.white,tag:51, _borderWidth:1.5,_cornerRadius:6,_text:"➕", _fontSize:50))
+        self.view.addSubview(button.make(x:790,y:290,width:60,height:60,back:UIColor.white,tag:52, _borderWidth:1.5,_cornerRadius:6,_text:"➖", _fontSize:50))
+     
         //商品名（1段目)
         if appDelegate.box[0].name == ""{
-        }else{
-            self.view.addSubview(button.make(xv:750,yv:450,wv:200,hv:60,f:35,b:"\(appDelegate.box[0].name)",c:13,d:0,e:0,m:0))
-        }
+        }else{self.view.addSubview(button.make(x:750,y:450,width:200,height:60,back:UIColor.clear,tag:13, _text:"\(appDelegate.box[0].name)",_fontSize:35))}
         //商品名（2段目)
         if appDelegate.box[1].name == ""{
-        }else{
-            self.view.addSubview(button.make(xv:750,yv:510,wv:200,hv:60,f:35,b:"\(appDelegate.box[1].name)",c:14,d:0,e:0,m:0))
-        }
+        }else{self.view.addSubview(button.make(x:750,y:510,width:200,height:60,back:UIColor.clear,tag:14, _text:"\(appDelegate.box[1].name)",_fontSize:35))}
         //商品名（2段目)
         if appDelegate.box[2].name == ""{
-        }else{
-            self.view.addSubview(button.make(xv:750,yv:570,wv:200,hv:60,f:35,b:"\(appDelegate.box[2].name)",c:15,d:0,e:0,m:0))
-        }
+        }else{self.view.addSubview(button.make(x:750,y:570,width:200,height:60,back:UIColor.clear,tag:15, _text:"\(appDelegate.box[2].name)",_fontSize:35))}
+        
         //tag1用ボタンの作成
-        for k in 0...8{
-            self.view.addSubview(button.make(xv:5+(80*k),yv:5,wv:80,hv:70,f:20,b:appDelegate.tag1[k],c:16+k,d:1,e:0,m:1))
-        }
+        for k in 0...8{self.view.addSubview(button.make(x:CGFloat(5+(80*k)),y:5,width:80,height:70,back:UIColor.white,tag:16+k,_borderWidth:1.5, _cornerRadius:6,_text:appDelegate.tag1[k], _fontSize:20))}
         //tag1 選択ラベル
         let r1 = (appDelegate.choise*80)
-        self.view.addSubview(label.make(xv:5+r1,yv:5,wv:80,hv:70,f:50,o:0,o1:2,o2:0.3,ic:""))
+        self.view.addSubview(label.make(x:CGFloat(5+r1),y:5,width:80,height:70,back:UIColor.black,_alpha:0.3, _fontSize:50))
         
         //tag2ボタン(tag2がある物だけ作成)
-        for d in 0..<appDelegate.data[tag_flag1].count{
-            self.view.addSubview(button.make(xv:5+(115*d),yv:90,wv:110,hv:70,f:25,b:appDelegate.tag2[tag_flag1][d],c:25+d,d:1,e:0,m:1))
-        }
+        for d in 0..<appDelegate.data[tag_flag1].count{self.view.addSubview(button.make(x:CGFloat(5+(115*d)),y:90,width:110,height:70,back:UIColor.white,tag:25+d,_borderWidth:1.5, _cornerRadius:6,_text:appDelegate.tag2[tag_flag1][d], _fontSize:25))}
         //tag2 選択ラベル
         let r2 = (appDelegate.tagFlag2*115)
-        self.view.addSubview(label.make(xv:5+r2,yv:90,wv:110,hv:70,f:50,o:0,o1:2,o2:0.3,ic:""))
+        self.view.addSubview(label.make(x:CGFloat(5+r2),y:90,width:110,height:70,back:UIColor.black,_alpha:0.3, _fontSize:50))
         
         //数量用（共通)
-        self.view.addSubview(label.make(xv:870,yv:290,wv:60,hv:60,f:50,o:2,o1:0,o2:0,ic:"\(appDelegate.box[appDelegate.counter].qty)"))
+        self.view.addSubview(label.make(x:870,y:290,width:60,height:60,back:UIColor.clear,_text:"\(appDelegate.box[appDelegate.counter].qty)",_fontSize:50))
         //数量用（1段目)
-        self.view.addSubview(label.make(xv:960,yv:450,wv:60,hv:60,f:50,o:0,o1:0,o2:0,ic:"\(appDelegate.box[0].qty)"))
+        self.view.addSubview(label.make(x:960,y:450,width:60,height:60,back:UIColor.clear,_text:"\(appDelegate.box[0].qty)",_fontSize:50))
         //数量用（2段目)
-        self.view.addSubview(label.make(xv:960,yv:510,wv:60,hv:60,f:50,o:0,o1:0,o2:0,ic:"\(appDelegate.box[1].qty)"))
+        self.view.addSubview(label.make(x:960,y:510,width:60,height:60,back:UIColor.clear,_text:"\(appDelegate.box[1].qty)",_fontSize:50))
         //数量用（3段目)
-        self.view.addSubview(label.make(xv:960,yv:570,wv:60,hv:60,f:50,o:0,o1:0,o2:0,ic:"\(appDelegate.box[2].qty)"))
+        self.view.addSubview(label.make(x:960,y:570,width:60,height:60,back:UIColor.clear,_text:"\(appDelegate.box[2].qty)",_fontSize:50))
+        
         
         //商品マスク用view
-        if  appDelegate.countType[0].now == "on"{
-            self.view.addSubview(label.make(xv:752,yv:445,wv:212,hv:60,f:50,o:0,o1:3,o2:0.5,ic:""))
-        }
-        if  appDelegate.countType[1].now == "on"{
-            self.view.addSubview(label.make(xv:752,yv:505,wv:212,hv:60,f:50,o:0,o1:3,o2:0.5,ic:""))
-        }
-        if  appDelegate.countType[2].now == "on"{
-            self.view.addSubview(label.make(xv:752,yv:565,wv:212,hv:60,f:50,o:0,o1:3,o2:0.5,ic:""))
-        }
+        if  appDelegate.countType[0].now == "on"{self.view.addSubview(label.make(x:752,y:445,width:212,height:60,back:UIColor.yellow,_alpha:0.5))}
+        if  appDelegate.countType[1].now == "on"{self.view.addSubview(label.make(x:752,y:505,width:212,height:60,back:UIColor.yellow,_alpha:0.5))}
+        if  appDelegate.countType[2].now == "on"{self.view.addSubview(label.make(x:752,y:565,width:212,height:60,back:UIColor.yellow,_alpha:0.5))}
         //一度に4皿までメッセージ
         let mess = UIImageView(frame: CGRect(x:CGFloat(100), y: CGFloat(390), width: CGFloat(550), height: CGFloat(700)))
         mess.image = UIImage(named: "mess1.png")!
@@ -153,7 +136,7 @@ class Menu: UIViewController,UITextFieldDelegate,UITabBarDelegate {
     
     //ボタンイベント処理
     @objc func selection(sender: UIButton){
-        let label = makeLabel()//o:border,o1:backgrand,o2:alpha
+        let label = MakeLabel()
         let view = viewSetting()
         let tag_flag1 = appDelegate.choise
         if sender.tag<=5{
@@ -213,21 +196,23 @@ class Menu: UIViewController,UITextFieldDelegate,UITabBarDelegate {
             appDelegate.countType[0].now = "on"
             appDelegate.countType[1].now = "off"
             appDelegate.countType[2].now = "off"
-            self.view.addSubview(label.make(xv:752,yv:445,wv:212,hv:60,f:50,o:0,o1:2,o2:0.5,ic:"\(appDelegate.box[2].qty)"))
+            self.view.addSubview(label.make(x:752,y:445,width:212,height:60,back:UIColor.black,_alpha:0.5, _text:"\(appDelegate.box[2].qty)", _fontSize:50))
             viewDidLoad()
         case 14://商品名(2段目)
             appDelegate.counter = 1
             appDelegate.countType[0].now = "off"
             appDelegate.countType[1].now = "on"
             appDelegate.countType[2].now = "off"
-            self.view.addSubview(label.make(xv:752,yv:505,wv:212,hv:60,f:50,o:0,o1:2,o2:0.5,ic:"\(appDelegate.box[2].qty)"))
+            self.view.addSubview(label.make(x:752,y:505,width:212,height:60,back:UIColor.black,_alpha:0.5, _text:"\(appDelegate.box[2].qty)", _fontSize:50))
+           
             viewDidLoad()
         case 15://商品名(3段目)
             appDelegate.counter = 2
             appDelegate.countType[0].now = "off"
             appDelegate.countType[1].now = "off"
             appDelegate.countType[2].now = "on"
-            self.view.addSubview(label.make(xv:752,yv:565,wv:212,hv:60,f:50,o:0,o1:2,o2:0.5,ic:"\(appDelegate.box[2].qty)"))
+            self.view.addSubview(label.make(x:752,y:5655,width:212,height:60,back:UIColor.black,_alpha:0.5, _text:"\(appDelegate.box[2].qty)", _fontSize:50))
+         
             viewDidLoad()
         case j://tag1
             appDelegate.choise = j-16
@@ -244,4 +229,3 @@ class Menu: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         // Dispose of any resources that can be recreated.
     }
 }
-

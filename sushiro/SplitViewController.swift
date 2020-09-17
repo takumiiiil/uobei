@@ -7,7 +7,6 @@ import CoreImage
 
 
 //グローバルにする必要ある
-
 struct Section2 {
     var title: String
     var items: [String]
@@ -88,6 +87,7 @@ class SplitViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
     
+         let label = MakeLabel()
         let soundFilePath = Bundle.main.path(forResource: "\(appDelegate.soundNum)", ofType: "mp3")!
         let sound:URL = URL(fileURLWithPath: soundFilePath)
         
@@ -285,11 +285,11 @@ extension SplitViewController: UITableViewDataSource {
         
         if appDelegate.viewType == "年代別来店割合"{
             let realm = try! Realm()
-            let label = makeLabel()
+            let label = MakeLabel()
             let results = realm.objects(allData.self)
             var dictionary : [String:Int] = ["12歳以下男性":0,"12歳以下女性":0,"13-19歳男性":0,"13-19歳女性":0,"20-29歳男性":0,"20-29歳女性":0,"30-49歳男性":0,"30-49歳女性":0,"50歳以上男性":0,"50歳以上女性":0]
             let genArray : [String] = ["12歳以下男性","12歳以下女性","13-19歳男性","13-19歳女性","20-29歳男性","20-29歳女性","30-49歳男性","30-49歳女性","50歳以上男性","50歳以上女性"]
-            let colorArray : [UIColor] = [.darkGray,.green,.yellow,.red,.systemPink,.cyan,.brown,.lightGray,.magenta,.purple]
+            let colorArray : [UIColor] = [.darkGray,.green,.yellow,.red,.blue,.cyan,.brown,.lightGray,.magenta,.purple]
             
             
             for i in 0...results.count - 1 {
@@ -303,22 +303,28 @@ extension SplitViewController: UITableViewDataSource {
 
             for i in 0...9{
                 if indexPath.section==0 && indexPath.row == i{
-                    let generationLabel = label.make(xv:200,yv:20,wv:30,hv:35,f:30,o:0,o1:0,o2:0.3,ic:"\(String(describing: dictionary[genArray[i]]!))■")
+                    let generationLabel = label.make(x:200,y:20,width:30,height:35,back:UIColor.clear,_alpha:0.3, _text:"\(String(describing: dictionary[genArray[i]]!))■", _fontSize:30)
                     generationLabel.textColor = colorArray[i]
                     cell.accessoryView = generationLabel
                 }
             }
             
             super.viewWillAppear(true)
+            
             let pieChartView = PieChartView()
-
+            var choiseColor:UIColor = UIColor.clear
+            if #available(iOS 10.0, *){
+                choiseColor=UIColor.black
+            }else{
+                choiseColor=UIColor.blue
+            }
             pieChartView.frame = CGRect(x: -80, y: 200, width: view.frame.size.width, height: 350)
             pieChartView.segments = [
                 Segment(color: UIColor.darkGray, value: CGFloat(dictionary[genArray[0]]!)),
                 Segment(color: UIColor.green, value: CGFloat(dictionary[genArray[1]]!)),
                 Segment(color: UIColor.yellow, value: CGFloat(dictionary[genArray[2]]!)),
                 Segment(color: UIColor.red, value: CGFloat(dictionary[genArray[3]]!)),
-                Segment(color: UIColor.systemPink, value: CGFloat(dictionary[genArray[4]]!)),
+                Segment(color: choiseColor, value: CGFloat(dictionary[genArray[4]]!)),
                 Segment(color: UIColor.cyan, value: CGFloat(dictionary[genArray[5]]!)),
                 Segment(color: UIColor.brown, value: CGFloat(dictionary[genArray[6]]!)),
                 Segment(color: UIColor.lightGray, value: CGFloat(dictionary[genArray[7]]!)),
@@ -330,13 +336,13 @@ extension SplitViewController: UITableViewDataSource {
         
         if appDelegate.viewType == "年代別平均皿数"{
             let realm = try! Realm()
-            let label = makeLabel()
             var nilCou = 0
+             let label = MakeLabel()
             let results = realm.objects(allData.self)
             var countDic : [String:Int] = ["12歳以下男性":0,"12歳以下女性":0,"13-19歳男性":0,"13-19歳女性":0,"20-29歳男性":0,"20-29歳女性":0,"30-49歳男性":0,"30-49歳女性":0,"50歳以上男性":0,"50歳以上女性":0]
             var dishDic : [String:Int] = ["12歳以下男性":0,"12歳以下女性":0,"13-19歳男性":0,"13-19歳女性":0,"20-29歳男性":0,"20-29歳女性":0,"30-49歳男性":0,"30-49歳女性":0,"50歳以上男性":0,"50歳以上女性":0]
                    let genArray : [String] = ["12歳以下男性","12歳以下女性","13-19歳男性","13-19歳女性","20-29歳男性","20-29歳女性","30-49歳男性","30-49歳女性","50歳以上男性","50歳以上女性"]
-                   let colorArray : [UIColor] = [.darkGray,.green,.yellow,.red,.systemPink,.cyan,.brown,.lightGray,.magenta,.purple]
+                   let colorArray : [UIColor] = [.darkGray,.green,.yellow,.red,.blue,.cyan,.brown,.lightGray,.magenta,.purple]
                    for i in 0...results.count - 1 {
                        if results[i].generation == "" || results[i].adultCount == "" || results[i].childCount == "" || results[i].dish == 0{
                            nilCou += 1
@@ -353,7 +359,7 @@ extension SplitViewController: UITableViewDataSource {
                        if indexPath.section==0 && indexPath.row == i{
                         var ans:String = String(round((Double(dishDic[genArray[i]]!) / Double(countDic[genArray[i]]!)) * 10) / 10)
                         if ans == "nan" {ans = "0"}
-                           let generationLabel = label.make(xv:200,yv:20,wv:40,hv:35,f:30,o:0,o1:0,o2:0.3,ic:"\(String(describing: ans))■")
+                        let generationLabel = label.make(x:200,y:20,width:40,height:35,back:UIColor.clear,_alpha:0.3,_text:"\(String(describing: ans))■",_fontSize:30)
                            generationLabel.textColor = colorArray[i]
                            cell.accessoryView = generationLabel
                        }
@@ -372,7 +378,7 @@ extension SplitViewController: UITableViewDataSource {
                        Segment(color: UIColor.green, value: CGFloat(Float(averageArray[1])!)),
                        Segment(color: UIColor.yellow, value: CGFloat(Float(averageArray[2])!)),
                        Segment(color: UIColor.red, value: CGFloat(Float(averageArray[3])!)),
-                       Segment(color: UIColor.systemPink, value: CGFloat(Float(averageArray[4])!)),
+                       Segment(color: UIColor.blue, value: CGFloat(Float(averageArray[4])!)),
                        Segment(color: UIColor.cyan, value: CGFloat(Float(averageArray[5])!)),
                        Segment(color: UIColor.brown, value: CGFloat(Float(averageArray[6])!)),
                        Segment(color: UIColor.lightGray, value: CGFloat(Float(averageArray[7])!)),
@@ -381,44 +387,45 @@ extension SplitViewController: UITableViewDataSource {
                    ]
                    view.addSubview(pieChartView)
                }
-        let label = makeLabel()//o:border,o1:backgrand,o2:0でalpha無効,ic:300でむテキスト無効
+        
         if appDelegate.viewType == "realm" {
+            let label = MakeLabel()
             let realm = try! Realm()
             let obj = realm.objects(guestData.self).last
             if indexPath.section==0 && indexPath.row == 0{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(obj!.inTime)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(obj!.inTime)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==0 && indexPath.row == 1{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(obj!.outTime)")
+                 let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(obj!.outTime)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==0 && indexPath.row == 2{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(obj!.adultCount)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(obj!.adultCount)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==0 && indexPath.row == 3{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(obj!.childCount)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(obj!.childCount)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==0 && indexPath.row == 4{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(obj!.seatType)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(obj!.seatType)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==0 && indexPath.row == 5{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(obj!.dish)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(obj!.dish)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==1 && indexPath.row == 0{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(appDelegate.qrStatus)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(appDelegate.qrStatus)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==1 && indexPath.row == 1{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(appDelegate.soundNum)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(appDelegate.soundNum)", _fontSize:30)
                 cell.accessoryView = label3
             }
             if indexPath.section==1 && indexPath.row == 2{
-                let label3 = label.make(xv:200,yv:20,wv:300,hv:30,f:30,o:0,o1:0,o2:0.3,ic:"\(appDelegate.movieNum)")
+                let label3 = label.make(x:200,y:20,width:300,height:30,back:UIColor.clear,_text:"\(appDelegate.movieNum)", _fontSize:30)
                 cell.accessoryView = label3
             }
         }

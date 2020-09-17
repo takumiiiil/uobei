@@ -6,10 +6,6 @@ import Foundation
 import RealmSwift
 import CoreImage
 
-
-
-
-//注文前画面クラス
 class Order: UIViewController,UITextFieldDelegate,UITabBarDelegate {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var myTabBar:UITabBar!
@@ -52,156 +48,39 @@ class Order: UIViewController,UITextFieldDelegate,UITabBarDelegate {
         myImageView = UIImageView(frame: UIScreen.main.bounds)
         myImageView.image = UIImage(ciImage: myInputImage!)
         self.view.addSubview(myImageView)
-        
-        //作成用メソッド
-        //タグ作成
-        func makeButtonOrderTag(xv:Int,yv:Int,wv:Int,hv:Int,b:String,c:Int){
-            let button: UIButton = UIButton(frame: CGRect(x:CGFloat(xv), y:CGFloat(yv), width: CGFloat(wv), height: CGFloat(hv)))
-            let picture = UIImage(named: "\(b).png")
-            button.layer.borderColor = UIColor.white.cgColor
-            button.layer.borderWidth = 1
-            button.backgroundColor = UIColor.clear
-            button.setTitle("\(b)", for: .normal)
-            button.tag = c
-            button.setImage(picture, for: .normal)
-            button.layer.cornerRadius = 6
-            button.addTarget(self, action: #selector(celection(sender:)), for: .touchUpInside)
-            self.view.addSubview(button)
-        }
-        //ボタン作成
-        func makeButtonBeforeOrder(xv:Int,yv:Int,wv:Int,hv:Int,f:Int,b:String,c:Int){
-            let button: UIButton = UIButton(frame: CGRect(x:CGFloat(xv), y:CGFloat(yv), width: CGFloat(wv), height: CGFloat(hv)))
-            button.backgroundColor = UIColor.white
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 1.5
-            button.setTitle("\(b)", for: .normal)
-            button.layer.cornerRadius = 6
-            button.setTitleColor(UIColor.black, for: .normal)
-            button.titleLabel?.numberOfLines = 2//0:無限改行,2:2行表示
-            button.titleLabel?.font =  UIFont.systemFont(ofSize: 25)
-            button.tag = c
-            //button.layer.position = CGPoint(x: self.view.bounds.width/2 , y:self.view.bounds.height-CGFloat(yh))
-            button.addTarget(self, action: #selector(celection(sender:)), for: .touchUpInside)
-            // ボタンを追加する.
-            self.view.addSubview(button)
-        }
-        //商品増減
-        func countButton(xv:Int,yv:Int,wv:Int,hv:Int,f:Int,b:String,c:Int){
-            let button: UIButton = UIButton(frame: CGRect(x:CGFloat(xv), y:CGFloat(yv), width: CGFloat(wv), height: CGFloat(hv)))
-            let picture = UIImage(named: "button.jpeg")
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 0
-            button.layer.cornerRadius = 3.0
-            button.titleLabel?.numberOfLines = 2//0:無限改行,2:2行表示
-            button.titleLabel?.font =  UIFont.systemFont(ofSize: 45)
-            button.tag = c
-            button.setBackgroundImage(picture, for: .normal)
-            button.setTitleColor(UIColor.white, for: .normal)
-            button.setTitle("\(b)", for: .normal)
-            button.addTarget(self, action: #selector(celection(sender:)), for: .touchUpInside)
-            self.view.addSubview(button)
-        }
-        //商品名用
-        func nameButton(button:UIButton,num:Int) -> UIButton{
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.borderWidth = 1.5
-            button.titleLabel?.font =  UIFont.systemFont(ofSize: 35)
-            button.setTitle("\(appDelegate.box[num].name)", for: .normal)
-            button.titleLabel?.numberOfLines = 1//0:無限改行,2:2行表示
-            button.setTitleColor(UIColor.black, for: UIControl.State.normal)
-            button.backgroundColor = UIColor.clear
-            button.tag = 13
-            button.addTarget(self, action: #selector(celection(sender:)), for: .touchUpInside)
-            return button
-        }
-
-        
-        
-        //数量用
-        func countLabel(label:UILabel,num:Int) -> UILabel{
-            label.layer.borderColor = UIColor.black.cgColor
-            label.layer.borderWidth = 1.5
-            label.font = label.font.withSize(CGFloat(50))
-            label.textAlignment = NSTextAlignment.center
-            if appDelegate.box[num].name  != ""{
-                label.text = ("\(appDelegate.box[num].qty)")
-            }
-            label.numberOfLines = 0
-            label.backgroundColor = UIColor.clear
-            return label
-        }
-        //種類用
-        func typeLabel(label:UILabel,num:String){
-            label.layer.borderColor = UIColor.black.cgColor
-            label.layer.borderWidth = 1.5
-            label.font = label.font.withSize(CGFloat(50))
-            label.textAlignment = NSTextAlignment.center
-            label.text = (num)
-            label.numberOfLines = 0
-            label.backgroundColor = UIColor.clear
-            self.view.addSubview(label)
-        }
-        //メソッド終わり
-        
-        //ボタン作成
-        //種類作成
-        for i in 0...2{
-            let label = UILabel(frame: CGRect(x:CGFloat(50), y: CGFloat(280 + i * 60), width: CGFloat(60), height: CGFloat(60)))
-            typeLabel(label: label,num: String(i+1))
-        }
+        let label = MakeLabel()
+        let button = MakeButton()
+      
+        //1,2,3作成
+        for i in 0...2{self.view.addSubview(label.make(x:50,y:CGFloat(280+i*60),width:60,height:60,back:UIColor.clear,_borderWidth:1.5,_text:"\(i+1)",_fontSize:50,_alignment:NSTextAlignment.center))}
         //商品名作成
-        for i in 0...2{
-            let button = UIButton(frame: CGRect(x:CGFloat(110), y: CGFloat(280 + i * 60), width: CGFloat(200), height: CGFloat(60)))
-            self.view.addSubview(nameButton(button: button,num:i))
-        }
+        for i in 0...2{self.view.addSubview(button.make(x:110,y:CGFloat(280+i*60),width:200,height:60,back:UIColor.clear,tag:13,_borderWidth:1.5,_text:"\(appDelegate.box[i].name)",_fontSize:35,_alignment:NSTextAlignment.left))}
         //数量作成
-        for i in 0...2{
-            let label = UILabel(frame: CGRect(x:CGFloat(310), y: CGFloat(280 + i * 60), width: CGFloat(60), height: CGFloat(60)))
-            self.view.addSubview(countLabel(label: label,num:i))
-        }
-        //タグ作成
-        for i in 0...8{
-            makeButtonOrderTag(xv: 5 + 80 * i, yv: 5, wv: 80, hv: 70, b: "tag\(i)", c: 16)
-        }
-        //上部ボタン作成
-        let cate:[String] = ["まぐろ","サーモン","たこ・えび","貝","いか","光物"]
-        for i in 0...5{
-            makeButtonBeforeOrder(xv: 5 + i * 115, yv: 90, wv: 110, hv: 70, f: 20, b: cate[i], c: 17)
-        }
-        makeButtonBeforeOrder(xv:30,yv:700,wv:100,hv:50,f:20,b:"戻る",c:1)
-        makeButtonBeforeOrder(xv:550,yv:210,wv:170,hv:100,f:20,b:"注文する",c:18)
+        for i in 0...2{self.view.addSubview(label.make(x:310,y:CGFloat(280+i*60),width:60,height:60,back:UIColor.clear,_borderWidth:1.5,_text:"\(appDelegate.box[i].qty)",_fontSize:50,_alignment:NSTextAlignment.center))}
+        //上部タグ作成
+        for k in 0...8{self.view.addSubview(button.make(x:CGFloat(5+(80*k)),y:5,width:80,height:70,back:UIColor.white,tag:16+k,_borderWidth:1.5, _cornerRadius:6,_text:appDelegate.tag1[k], _fontSize:20))}
+        //下部タグ作成
+        let tag_flag1 = appDelegate.choise
+        for d in 0..<appDelegate.data[tag_flag1].count{self.view.addSubview(button.make(x:CGFloat(5+(115*d)),y:90,width:110,height:70,back:UIColor.white,tag:25+d,_borderWidth:1.5, _cornerRadius:6,_text:appDelegate.tag2[tag_flag1][d], _fontSize:25))}
+        
+        self.view.addSubview(button.make(x:30,y:700,width:100,height:50,back:UIColor.white,tag:1,_borderWidth:1.5, _cornerRadius:6,_text:"戻る", _fontSize:20))
+        self.view.addSubview(button.make(x:550,y:210,width:170,height:100,back:UIColor.white,tag:18,_borderWidth:1.5, _cornerRadius:6,_text:"注文する", _fontSize:20))
+       
         //+-ボタン作成
         for i in 0...2{
             if appDelegate.box[i].name != ""{
-                countButton(xv:390,yv:280+i*60,wv:60,hv:50,f:20,b:"+",c:i*2+2)
-                countButton(xv:460,yv:280+i*60,wv:60,hv:50,f:20,b:"−",c:i*2+3)
+                self.view.addSubview(button.make(x:390,y:CGFloat(280+i*60),width:60,height:50,back:UIColor.white,tag:i*2+2,_pic:"button",_cornerRadius:3,_text:"+",_textColer:UIColor.white,_fontSize:25))
+                self.view.addSubview(button.make(x:460,y:CGFloat(280+i*60),width:60,height:50,back:UIColor.white,tag:i*2+3,_pic:"button",_cornerRadius:3,_text:"-",_textColer:UIColor.white,_fontSize:25))
             }
         }
         //メッセージ（合計)
-        let messageLabel = UILabel(frame: CGRect(x:CGFloat(190), y: CGFloat(460), width: CGFloat(120), height: CGFloat(60)))
-        messageLabel.layer.borderColor = UIColor.black.cgColor
-        messageLabel.layer.borderWidth = 1.5
-        messageLabel.font = messageLabel.font.withSize(CGFloat(50))
-        messageLabel.textAlignment = NSTextAlignment.center
-        messageLabel.text = ("合計")
-        messageLabel.numberOfLines = 0
-        messageLabel.backgroundColor = UIColor.red
-        self.view.addSubview(messageLabel)
+        self.view.addSubview(label.make(x:190,y:460,width:120,height:60,back:UIColor.red,_borderWidth:1.5,_text:"合計",_fontSize:50,_alignment:NSTextAlignment.center))
         //数量用（合計)
-        let sumLabel = UILabel(frame: CGRect(x:CGFloat(310), y: CGFloat(460), width: CGFloat(60), height: CGFloat(60)))
-        _ = UILabel(frame: CGRect(x:CGFloat(310), y: CGFloat(460), width: CGFloat(60), height: CGFloat(60)))
-        sumLabel.layer.borderColor = UIColor.black.cgColor
-        sumLabel.layer.borderWidth = 1.5
-        sumLabel.font = sumLabel.font.withSize(CGFloat(50))
-        sumLabel.textAlignment = NSTextAlignment.center
-        sumLabel.text = ("\(appDelegate.box[0].qty + appDelegate.box[1].qty + appDelegate.box[2].qty)")
-        sumLabel.numberOfLines = 0
-        sumLabel.backgroundColor = UIColor.clear
-        self.view.addSubview(sumLabel)
+        self.view.addSubview(label.make(x:310,y:460,width:60,height:60,back:UIColor.clear,_borderWidth:1.5,_text:"\(appDelegate.box[0].qty + appDelegate.box[1].qty + appDelegate.box[2].qty)",_fontSize:50,_alignment:NSTextAlignment.center))
     }
     
     //ボタンイベント処理
-    @objc func celection(sender: UIButton){
+    @objc func selection(sender: UIButton){
         let view = viewSetting()
         switch sender.tag{
         case 1://戻ボタン

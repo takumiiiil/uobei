@@ -132,14 +132,6 @@ extension MasterViewController: UITableViewDelegate {
     //Viewの移動する.
     SViewController.modalPresentationStyle = .fullScreen
     self.present(SViewController, animated: false, completion: nil)
-    /* //AppDelegateクラスでローカル通知を受け取った際に、画面遷移させたいといった場合などはこの方法(しかしここではチラつく)
-    appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-    // rootViewControllerに入れる
-    appDelegate.window?.rootViewController = Test()
-    // 表示
-    if appDelegate.window?.rootViewController == Test(){
-    appDelegate.window?.makeKeyAndVisible()
-    }*/
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
