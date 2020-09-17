@@ -13,7 +13,7 @@ class Camera: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
         // Do any additional setup after loading the view, typically from a nib.
         
         // カメラやマイクのデバイスそのものを管理するオブジェクトを生成（ここではワイドアングルカメラ・ビデオ・背面カメラを指定）
-        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
+       /* let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
                                                                 mediaType: .video,
                                                                 position: .back)
         // ワイドアングルカメラ・ビデオ・背面カメラに該当するデバイスを取得
@@ -81,7 +81,7 @@ class Camera: UIViewController,UIImagePickerControllerDelegate,UINavigationContr
                 
                 break
             }
-        }
+        }*/
     }
 }
 
