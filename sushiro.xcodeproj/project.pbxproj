@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33187EC22513584700D4BD18 /* MakePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33187EC12513584700D4BD18 /* MakePopUp.swift */; };
-		33187EC425142B0200D4BD18 /* MakePopPassWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33187EC325142B0200D4BD18 /* MakePopPassWord.swift */; };
-		33578C0525159C3100DD5BAF /* MakeBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C0425159C3100DD5BAF /* MakeBackgroundImage.swift */; };
 		33578C0E2516CDDF00DD5BAF /* MakePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C0D2516CDDF00DD5BAF /* MakePicker.swift */; };
 		33578C1025182E1500DD5BAF /* MakeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C0F25182E1500DD5BAF /* MakeScrollView.swift */; };
 		33578C122518422400DD5BAF /* MakeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C112518422400DD5BAF /* MakeCell.swift */; };
@@ -18,27 +15,30 @@
 		33578C1A25185E2800DD5BAF /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33578C1725185E2800DD5BAF /* Realm.framework */; };
 		33578C1B25185E2800DD5BAF /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33578C1725185E2800DD5BAF /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		33578C1E25187A9D00DD5BAF /* MenuData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C1D25187A9C00DD5BAF /* MenuData.swift */; };
-		33578C202518956800DD5BAF /* MakeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C1F2518956800DD5BAF /* MakeCalculator.swift */; };
 		33578C262519D0B300DD5BAF /* CalculatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C252519D0B300DD5BAF /* CalculatorDelegate.swift */; };
 		33578C2A251D810F00DD5BAF /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C29251D810D00DD5BAF /* CheckIn.swift */; };
 		33578C2C251D819800DD5BAF /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C2B251D819800DD5BAF /* SignUp.swift */; };
 		33578C2E251D821D00DD5BAF /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C2D251D821D00DD5BAF /* LogIn.swift */; };
 		33578C30251D82A300DD5BAF /* MakeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C2F251D82A300DD5BAF /* MakeTextField.swift */; };
-		33578C32251D842B00DD5BAF /* LogInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33578C31251D842B00DD5BAF /* LogInData.swift */; };
+		E114DF672521D14E00123A6E /* MakeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF5E2521D14E00123A6E /* MakeCalculator.swift */; };
+		E114DF682521D14E00123A6E /* MakeQrcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF5F2521D14E00123A6E /* MakeQrcode.swift */; };
+		E114DF692521D14E00123A6E /* ViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF602521D14E00123A6E /* ViewSetting.swift */; };
+		E114DF6A2521D14E00123A6E /* MakePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF612521D14E00123A6E /* MakePopUp.swift */; };
+		E114DF6B2521D14E00123A6E /* MakePopPassWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF622521D14E00123A6E /* MakePopPassWord.swift */; };
+		E114DF6C2521D14E00123A6E /* MakeSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF632521D14E00123A6E /* MakeSound.swift */; };
+		E114DF6D2521D14E00123A6E /* MakeBackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF642521D14E00123A6E /* MakeBackgroundImage.swift */; };
+		E114DF6E2521D14E00123A6E /* MakeBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF652521D14E00123A6E /* MakeBarcode.swift */; };
+		E114DF6F2521D14E00123A6E /* ImageSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF662521D14E00123A6E /* ImageSetting.swift */; };
+		E114DF742521D19700123A6E /* LogInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF702521D19700123A6E /* LogInData.swift */; };
+		E114DF752521D19700123A6E /* AllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF712521D19700123A6E /* AllData.swift */; };
+		E114DF762521D19700123A6E /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF722521D19700123A6E /* AppSetting.swift */; };
+		E114DF772521D19700123A6E /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114DF732521D19700123A6E /* GuestData.swift */; };
 		E1204C1B25130F2C00274E5B /* SelectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C1A25130F2C00274E5B /* SelectionProtocol.swift */; };
-		E1204C2125130F7200274E5B /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2025130F7200274E5B /* AppSetting.swift */; };
-		E1204C2325130F8000274E5B /* AllData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2225130F8000274E5B /* AllData.swift */; };
 		E1204C2525130FAB00274E5B /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2425130FAB00274E5B /* DateExtention.swift */; };
-		E1204C2725130FC500274E5B /* MakeQrcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2625130FC500274E5B /* MakeQrcode.swift */; };
-		E1204C2925130FD200274E5B /* MakeBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2825130FD200274E5B /* MakeBarcode.swift */; };
-		E1204C2B25130FE300274E5B /* MakeSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2A25130FE300274E5B /* MakeSound.swift */; };
-		E1204C2D25130FF600274E5B /* ViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2C25130FF600274E5B /* ViewSetting.swift */; };
 		E1204C2F2513100300274E5B /* MakeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C2E2513100300274E5B /* MakeLabel.swift */; };
 		E1204C312513101600274E5B /* MakeStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C302513101600274E5B /* MakeStepper.swift */; };
 		E1204C332513102800274E5B /* MakeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C322513102800274E5B /* MakeButton.swift */; };
 		E1204C352513103800274E5B /* MakeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C342513103800274E5B /* MakeSlider.swift */; };
-		E1204C37251315E600274E5B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1204C36251315E500274E5B /* Default-568h@2x.png */; };
-		E1204C392513177300274E5B /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1204C382513177300274E5B /* GuestData.swift */; };
 		E160A881251DA69900CD9BB2 /* button01c.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E160A87E251DA69900CD9BB2 /* button01c.mp3 */; };
 		E160A882251DA69900CD9BB2 /* button01a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E160A87F251DA69900CD9BB2 /* button01a.mp3 */; };
 		E160A883251DA69900CD9BB2 /* button01b.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E160A880251DA69900CD9BB2 /* button01b.mp3 */; };
@@ -46,7 +46,6 @@
 		E160A888251DA76900CD9BB2 /* movie02.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E160A885251DA6AD00CD9BB2 /* movie02.mp4 */; };
 		E160A889251DA76900CD9BB2 /* movie03.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E160A884251DA6AD00CD9BB2 /* movie03.mp4 */; };
 		E1861B9E252074BF00754193 /* MakePieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1861B9D252074BF00754193 /* MakePieChartView.swift */; };
-		E1A37FE325200EA00061C86F /* ImageSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A37FE225200EA00061C86F /* ImageSetting.swift */; };
 		E1C8AE93250DD15C007B18DC /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8AE92250DD15C007B18DC /* Menu.swift */; };
 		E1C8AE9F250DD186007B18DC /* Accounting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8AE94250DD186007B18DC /* Accounting.swift */; };
 		E1C8AEA0250DD186007B18DC /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8AE95250DD186007B18DC /* Ticket.swift */; };
@@ -82,36 +81,36 @@
 /* Begin PBXFileReference section */
 		33187EB12513259F00D4BD18 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = sushiro/Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		33187EB22513259F00D4BD18 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = sushiro/Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		33187EC12513584700D4BD18 /* MakePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePopUp.swift; sourceTree = "<group>"; };
-		33187EC325142B0200D4BD18 /* MakePopPassWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePopPassWord.swift; sourceTree = "<group>"; };
-		33578C0425159C3100DD5BAF /* MakeBackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBackgroundImage.swift; sourceTree = "<group>"; };
 		33578C0D2516CDDF00DD5BAF /* MakePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePicker.swift; sourceTree = "<group>"; };
 		33578C0F25182E1500DD5BAF /* MakeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeScrollView.swift; sourceTree = "<group>"; };
 		33578C112518422400DD5BAF /* MakeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCell.swift; sourceTree = "<group>"; };
 		33578C1625185E2800DD5BAF /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = sushiro/Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		33578C1725185E2800DD5BAF /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = sushiro/Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		33578C1D25187A9C00DD5BAF /* MenuData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuData.swift; sourceTree = "<group>"; };
-		33578C1F2518956800DD5BAF /* MakeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeCalculator.swift; sourceTree = "<group>"; };
 		33578C252519D0B300DD5BAF /* CalculatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorDelegate.swift; sourceTree = "<group>"; };
 		33578C29251D810D00DD5BAF /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		33578C2B251D819800DD5BAF /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		33578C2D251D821D00DD5BAF /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		33578C2F251D82A300DD5BAF /* MakeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTextField.swift; sourceTree = "<group>"; };
-		33578C31251D842B00DD5BAF /* LogInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInData.swift; sourceTree = "<group>"; };
+		E114DF5E2521D14E00123A6E /* MakeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeCalculator.swift; path = originalMethod/MakeCalculator.swift; sourceTree = "<group>"; };
+		E114DF5F2521D14E00123A6E /* MakeQrcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeQrcode.swift; path = originalMethod/MakeQrcode.swift; sourceTree = "<group>"; };
+		E114DF602521D14E00123A6E /* ViewSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewSetting.swift; path = originalMethod/ViewSetting.swift; sourceTree = "<group>"; };
+		E114DF612521D14E00123A6E /* MakePopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakePopUp.swift; path = originalMethod/MakePopUp.swift; sourceTree = "<group>"; };
+		E114DF622521D14E00123A6E /* MakePopPassWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakePopPassWord.swift; path = originalMethod/MakePopPassWord.swift; sourceTree = "<group>"; };
+		E114DF632521D14E00123A6E /* MakeSound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeSound.swift; path = originalMethod/MakeSound.swift; sourceTree = "<group>"; };
+		E114DF642521D14E00123A6E /* MakeBackgroundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeBackgroundImage.swift; path = originalMethod/MakeBackgroundImage.swift; sourceTree = "<group>"; };
+		E114DF652521D14E00123A6E /* MakeBarcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MakeBarcode.swift; path = originalMethod/MakeBarcode.swift; sourceTree = "<group>"; };
+		E114DF662521D14E00123A6E /* ImageSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageSetting.swift; path = originalMethod/ImageSetting.swift; sourceTree = "<group>"; };
+		E114DF702521D19700123A6E /* LogInData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogInData.swift; path = realmData/LogInData.swift; sourceTree = "<group>"; };
+		E114DF712521D19700123A6E /* AllData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllData.swift; path = realmData/AllData.swift; sourceTree = "<group>"; };
+		E114DF722521D19700123A6E /* AppSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppSetting.swift; path = realmData/AppSetting.swift; sourceTree = "<group>"; };
+		E114DF732521D19700123A6E /* GuestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuestData.swift; path = realmData/GuestData.swift; sourceTree = "<group>"; };
 		E1204C1A25130F2C00274E5B /* SelectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionProtocol.swift; sourceTree = "<group>"; };
-		E1204C2025130F7200274E5B /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
-		E1204C2225130F8000274E5B /* AllData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllData.swift; sourceTree = "<group>"; };
 		E1204C2425130FAB00274E5B /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
-		E1204C2625130FC500274E5B /* MakeQrcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeQrcode.swift; sourceTree = "<group>"; };
-		E1204C2825130FD200274E5B /* MakeBarcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBarcode.swift; sourceTree = "<group>"; };
-		E1204C2A25130FE300274E5B /* MakeSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeSound.swift; sourceTree = "<group>"; };
-		E1204C2C25130FF600274E5B /* ViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetting.swift; sourceTree = "<group>"; };
 		E1204C2E2513100300274E5B /* MakeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeLabel.swift; sourceTree = "<group>"; };
 		E1204C302513101600274E5B /* MakeStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeStepper.swift; sourceTree = "<group>"; };
 		E1204C322513102800274E5B /* MakeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeButton.swift; sourceTree = "<group>"; };
 		E1204C342513103800274E5B /* MakeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeSlider.swift; sourceTree = "<group>"; };
-		E1204C36251315E500274E5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E1204C382513177300274E5B /* GuestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestData.swift; sourceTree = "<group>"; };
 		E160A87E251DA69900CD9BB2 /* button01c.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = button01c.mp3; path = "../../../uobeiH/魚べい素材/音源/button01c.mp3"; sourceTree = "<group>"; };
 		E160A87F251DA69900CD9BB2 /* button01a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = button01a.mp3; path = "../../../uobeiH/魚べい素材/音源/button01a.mp3"; sourceTree = "<group>"; };
 		E160A880251DA69900CD9BB2 /* button01b.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = button01b.mp3; path = "../../../uobeiH/魚べい素材/音源/button01b.mp3"; sourceTree = "<group>"; };
@@ -119,7 +118,6 @@
 		E160A885251DA6AD00CD9BB2 /* movie02.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = movie02.mp4; path = "../../../uobeiH/魚べい素材/映像/movie02.mp4"; sourceTree = "<group>"; };
 		E160A886251DA6AD00CD9BB2 /* movie01.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = movie01.mp4; path = "../../../uobeiH/魚べい素材/映像/movie01.mp4"; sourceTree = "<group>"; };
 		E1861B9D252074BF00754193 /* MakePieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePieChartView.swift; sourceTree = "<group>"; };
-		E1A37FE225200EA00061C86F /* ImageSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSetting.swift; sourceTree = "<group>"; };
 		E1C8AE92250DD15C007B18DC /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		E1C8AE94250DD186007B18DC /* Accounting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accounting.swift; sourceTree = "<group>"; };
 		E1C8AE95250DD186007B18DC /* Ticket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
@@ -172,10 +170,10 @@
 		E1204C1625130ED200274E5B /* realmData */ = {
 			isa = PBXGroup;
 			children = (
-				E1204C2025130F7200274E5B /* AppSetting.swift */,
-				E1204C2225130F8000274E5B /* AllData.swift */,
-				E1204C382513177300274E5B /* GuestData.swift */,
-				33578C31251D842B00DD5BAF /* LogInData.swift */,
+				E114DF712521D19700123A6E /* AllData.swift */,
+				E114DF722521D19700123A6E /* AppSetting.swift */,
+				E114DF732521D19700123A6E /* GuestData.swift */,
+				E114DF702521D19700123A6E /* LogInData.swift */,
 			);
 			name = realmData;
 			sourceTree = "<group>";
@@ -191,15 +189,15 @@
 		E1204C1825130EEB00274E5B /* originalMethod */ = {
 			isa = PBXGroup;
 			children = (
-				E1204C2625130FC500274E5B /* MakeQrcode.swift */,
-				E1204C2825130FD200274E5B /* MakeBarcode.swift */,
-				E1204C2A25130FE300274E5B /* MakeSound.swift */,
-				E1204C2C25130FF600274E5B /* ViewSetting.swift */,
-				33187EC12513584700D4BD18 /* MakePopUp.swift */,
-				33187EC325142B0200D4BD18 /* MakePopPassWord.swift */,
-				33578C0425159C3100DD5BAF /* MakeBackgroundImage.swift */,
-				33578C1F2518956800DD5BAF /* MakeCalculator.swift */,
-				E1A37FE225200EA00061C86F /* ImageSetting.swift */,
+				E114DF662521D14E00123A6E /* ImageSetting.swift */,
+				E114DF642521D14E00123A6E /* MakeBackgroundImage.swift */,
+				E114DF652521D14E00123A6E /* MakeBarcode.swift */,
+				E114DF5E2521D14E00123A6E /* MakeCalculator.swift */,
+				E114DF622521D14E00123A6E /* MakePopPassWord.swift */,
+				E114DF612521D14E00123A6E /* MakePopUp.swift */,
+				E114DF5F2521D14E00123A6E /* MakeQrcode.swift */,
+				E114DF632521D14E00123A6E /* MakeSound.swift */,
+				E114DF602521D14E00123A6E /* ViewSetting.swift */,
 			);
 			name = originalMethod;
 			sourceTree = "<group>";
@@ -234,7 +232,6 @@
 			children = (
 				33578C1725185E2800DD5BAF /* Realm.framework */,
 				33578C1625185E2800DD5BAF /* RealmSwift.framework */,
-				E1204C36251315E500274E5B /* Default-568h@2x.png */,
 				E1DEE133250DCEAE001F32A6 /* sushiro */,
 				E1DEE132250DCEAE001F32A6 /* Products */,
 				E1C8AE8A250DD135007B18DC /* Frameworks */,
@@ -350,7 +347,6 @@
 				E160A888251DA76900CD9BB2 /* movie02.mp4 in Resources */,
 				E160A889251DA76900CD9BB2 /* movie03.mp4 in Resources */,
 				E1DEE13E250DCEB1001F32A6 /* Assets.xcassets in Resources */,
-				E1204C37251315E600274E5B /* Default-568h@2x.png in Resources */,
 				E160A882251DA69900CD9BB2 /* button01a.mp3 in Resources */,
 				E160A881251DA69900CD9BB2 /* button01c.mp3 in Resources */,
 				E160A883251DA69900CD9BB2 /* button01b.mp3 in Resources */,
@@ -364,49 +360,49 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E114DF772521D19700123A6E /* GuestData.swift in Sources */,
 				E1DEE139250DCEAE001F32A6 /* ViewController.swift in Sources */,
 				33578C30251D82A300DD5BAF /* MakeTextField.swift in Sources */,
+				E114DF752521D19700123A6E /* AllData.swift in Sources */,
 				33578C0E2516CDDF00DD5BAF /* MakePicker.swift in Sources */,
 				E1C8AEA0250DD186007B18DC /* Ticket.swift in Sources */,
-				33187EC425142B0200D4BD18 /* MakePopPassWord.swift in Sources */,
 				E1861B9E252074BF00754193 /* MakePieChartView.swift in Sources */,
+				E114DF6F2521D14E00123A6E /* ImageSetting.swift in Sources */,
 				E1DEE135250DCEAE001F32A6 /* AppDelegate.swift in Sources */,
 				E1C8AEA2250DD186007B18DC /* Reception.swift in Sources */,
 				E1204C2525130FAB00274E5B /* DateExtention.swift in Sources */,
-				E1204C2B25130FE300274E5B /* MakeSound.swift in Sources */,
+				E114DF692521D14E00123A6E /* ViewSetting.swift in Sources */,
 				E1C8AEA4250DD186007B18DC /* History.swift in Sources */,
 				E1C8AEA9250DD186007B18DC /* First.swift in Sources */,
 				E1204C2F2513100300274E5B /* MakeLabel.swift in Sources */,
 				E1C8AEA6250DD186007B18DC /* Test.swift in Sources */,
 				33578C122518422400DD5BAF /* MakeCell.swift in Sources */,
+				E114DF6B2521D14E00123A6E /* MakePopPassWord.swift in Sources */,
+				E114DF6D2521D14E00123A6E /* MakeBackgroundImage.swift in Sources */,
 				E1C8AEA5250DD186007B18DC /* Call.swift in Sources */,
-				33578C32251D842B00DD5BAF /* LogInData.swift in Sources */,
 				E1C8AE93250DD15C007B18DC /* Menu.swift in Sources */,
 				33578C2A251D810F00DD5BAF /* CheckIn.swift in Sources */,
+				E114DF742521D19700123A6E /* LogInData.swift in Sources */,
 				E1C8AEA3250DD186007B18DC /* MasterViewController.swift in Sources */,
 				33578C2C251D819800DD5BAF /* SignUp.swift in Sources */,
+				E114DF6E2521D14E00123A6E /* MakeBarcode.swift in Sources */,
 				33578C1E25187A9D00DD5BAF /* MenuData.swift in Sources */,
 				E1204C1B25130F2C00274E5B /* SelectionProtocol.swift in Sources */,
 				E1204C352513103800274E5B /* MakeSlider.swift in Sources */,
 				E1C8AEA7250DD186007B18DC /* SplitViewController.swift in Sources */,
-				E1A37FE325200EA00061C86F /* ImageSetting.swift in Sources */,
+				E114DF762521D19700123A6E /* AppSetting.swift in Sources */,
 				33578C262519D0B300DD5BAF /* CalculatorDelegate.swift in Sources */,
-				E1204C2D25130FF600274E5B /* ViewSetting.swift in Sources */,
 				33578C1025182E1500DD5BAF /* MakeScrollView.swift in Sources */,
 				E1204C332513102800274E5B /* MakeButton.swift in Sources */,
-				E1204C2325130F8000274E5B /* AllData.swift in Sources */,
-				E1204C2725130FC500274E5B /* MakeQrcode.swift in Sources */,
-				E1204C2125130F7200274E5B /* AppSetting.swift in Sources */,
-				33578C202518956800DD5BAF /* MakeCalculator.swift in Sources */,
 				33578C2E251D821D00DD5BAF /* LogIn.swift in Sources */,
+				E114DF6C2521D14E00123A6E /* MakeSound.swift in Sources */,
+				E114DF682521D14E00123A6E /* MakeQrcode.swift in Sources */,
 				E1204C312513101600274E5B /* MakeStepper.swift in Sources */,
 				E1C8AE9F250DD186007B18DC /* Accounting.swift in Sources */,
-				33578C0525159C3100DD5BAF /* MakeBackgroundImage.swift in Sources */,
-				33187EC22513584700D4BD18 /* MakePopUp.swift in Sources */,
-				E1204C392513177300274E5B /* GuestData.swift in Sources */,
-				E1204C2925130FD200274E5B /* MakeBarcode.swift in Sources */,
+				E114DF6A2521D14E00123A6E /* MakePopUp.swift in Sources */,
 				E1C8AEA8250DD186007B18DC /* Camera.swift in Sources */,
 				E1C8AEA1250DD186007B18DC /* Order.swift in Sources */,
+				E114DF672521D14E00123A6E /* MakeCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
